@@ -25,15 +25,15 @@
 </table> --}}
 
 <br>
-<button type="button" class="btn btn-primary">Primary</button>
+<button type = "button" class = "btn btn-primary">Primary</button>
 <br>
 <!-- elsif -->
 @if ($role == 'admin')
-<a href="#">Ke Halaman Admin</a>
+<a href = "#">Ke Halaman Admin</a>
 @elseif($role == 'staff')
-    <a href="#">Ke Halaman Staff</a>
+    <a href = "#">Ke Halaman Staff</a>
 @else
-    <a href="#">Ke halaman Whaetfer</a>
+    <a href = "#">Ke halaman Whaetfer</a>
 @endif
 <br>
 @endsection

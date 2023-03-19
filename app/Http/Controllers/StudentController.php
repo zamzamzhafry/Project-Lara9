@@ -51,6 +51,12 @@ class StudentController extends Controller
         $student = new Student;
         $student->create($request->all());
         // $student = Student::create($request->all());
+        if ($student) {
+            Session::flash('status', 'success');
+
+            # code...
+        }
+
         return redirect('/students');
     }
 
@@ -69,9 +75,5 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
 
         $student->update($request->all());
-
-
     }
-
-
 }
