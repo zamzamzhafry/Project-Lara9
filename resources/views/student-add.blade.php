@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="mt-4 col-5 m-auto">
-        <form action="student" method="post">
+        <form action="students" method="post">
             @csrf
             <div class="mb-3">
                 <label for="name">Name</label>

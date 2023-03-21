@@ -5,9 +5,19 @@
 @section('title', 'Students')
 
 @section('content')
+
+
     <h1>HALAMAN STUDENT</h1>
     <h3>Student List</h3>
+
+    @if (Session::has('status') )
+    <div class="alert alert-primary" role="alert">
+        {{ Session::get('message') }}
+    </div>
+    @endif
+
         <a href="/student-add" class="btn btn-primary">ADD DATA</a>
+
    <table class="table ">
     <thead>
         <th>Nomor</th>

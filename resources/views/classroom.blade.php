@@ -23,6 +23,7 @@
             <td>{{$data->name}}</td>
             <th>
                 <a href="class-detail/{{ $data->id }}">Detail</a>
+                <a href="class-edit/{{ $data->id }}">Edit</a>
             </th>
 
 

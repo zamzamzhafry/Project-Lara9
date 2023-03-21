@@ -42,4 +42,13 @@ class ClassController extends Controller
       $class = ClassRoom::create($request->all());
         return redirect('/class');
     }
+
+    public function edit(){
+
+
+    }
+    public function update(){
+
+
+    }
 }
