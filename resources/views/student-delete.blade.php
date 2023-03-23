@@ -18,5 +18,4 @@
         <a href="/students" class="btn btn-primary">Cancel</a>
     </div>
 
-
 @endsection

@@ -15,14 +15,24 @@ use App\Http\Requests\StudentCreateRequest;
 class StudentController extends Controller
 {
     //
-    public function index(){
+    public function index(Request $request){
         // code
         // var_dump('testss');
 
         // $student = Student::all();
-        $student = Student::get();
+        // $student = Student::get();
         // $student = Student::with('class.HomeroomTeacher','extracurriculars')->get(); // select * studnent
         // dd($student);
+
+        $keyword = $request->keyword;
+        // $student = Student::paginate(25);
+        $student = Student::where('name', 'LIKE', '%'.$keyword.'%')
+                    ->orWhere('gender', $keyword)
+                    ->orWhere('nis', 'LIKE' , '%'.$keyword.'%')
+                    ->orWhereHas('class', function($query) use($keyword){
+                        $query->where('name', 'LIKE', '%'.$keyword.'%');
+                    })
+                    ->paginate(15);
         return view('student', ['studentList' => $student]);
     }
     public function show($id){
@@ -123,7 +133,25 @@ class StudentController extends Controller
             }
 
             return redirect('/students');
+        }
+
+        public function deletedStudent( ){
+
+            $deletedStudent = Student::onlyTrashed()->get();
+            // dd($deletedStudent);
+            return view('student-deleted-list', ['student' => $deletedStudent]);
 
         }
 
+        public function restore($id){
+
+            $deletedStudent = Student::withTrashed()->where('id', $id)->restore();
+
+            if ($deletedStudent) {
+                Session::flash('status', 'success');
+                Session::flash('message', 'Student Has been Restored Successfully!!');
+            }
+
+            return redirect('/students');
+        }
     }
