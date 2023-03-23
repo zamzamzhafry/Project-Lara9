@@ -5,8 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Models\ClassRoom;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\StudentCreateRequest;
 
+/**
+ * Summary of StudentController
+ */
 class StudentController extends Controller
 {
     //
@@ -34,7 +39,14 @@ class StudentController extends Controller
         return view('student-add', ['class' => $class]);
     }
     public
-    function store(Request $request) {
+    function store(StudentCreateRequest $request) {
+
+        // $validated = $request->validate([
+        //     'nis'       => 'unique:students|max:8|required',
+        //     'name'      => 'max:50|required',
+        //     'gender'    => 'required',
+        //     'class'     => 'required',
+        // ]);
 
         // dd($request->all());
         // CARA 1
@@ -84,4 +96,34 @@ class StudentController extends Controller
 
             return redirect('/students');
         }
+
+        public function delete($id){
+
+            $student = Student::findOrFail($id);
+            return view('student-delete', ['student' => $student]);
+        }
+        public function destroy($id){
+
+            // dd($id);
+            // QUERY BUILDER
+
+            // $deletedStudent = DB::table('students')
+            // ->where('id', $id)->delete();
+
+            //ELQORUWENT
+
+            $deletedStudent = Student::findOrFail($id);
+            $deletedStudent->delete();
+
+
+            // FLASH warning
+            if ($deletedStudent) {
+                Session::flash('status', 'success');
+                Session::flash('message', 'Student Has been Deleted Successfully!!');
+            }
+
+            return redirect('/students');
+
+        }
+
     }
