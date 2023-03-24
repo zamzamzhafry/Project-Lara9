@@ -69,8 +69,19 @@ class StudentController extends Controller
         // !!cara 2
         // mass assignemnet cek studeen model
         // $student->create([        ]);
+
+        $newName = '';
+
+        if ($request->file('photo')) {
+            $extension = $request->file('photo')->getClientOriginalExtension();
+            $newName = $request->name. '-' . now()->timestamp. '.' .$extension;
+            $request->file('photo')->storeAs('photo', $newName);
+
+        }
+
         $student = new Student;
-        // $student -> create($request -> all());
+        $request['image'] = $newName;
+         // $student -> create($request -> all());
         $student = Student::create($request->all());
         if ($student) {
             Session::flash('status', 'success');

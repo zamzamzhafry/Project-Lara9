@@ -8,7 +8,7 @@
 
 
 <h1>HALAMAN HOME</h1>
-<h2> selamat datang, {{ $name }}. Anda adalah {{ $role }}</h2>
+<h2> selamat datang, . Anda adalah</h2>
 <br>
 
 {{-- <table class="table ">
@@ -27,7 +27,7 @@
 <br>
 <button type = "button" class = "btn btn-primary">Primary</button>
 <br>
-<!-- elsif -->
+{{-- <!-- elsif -->
 @if ($role == 'admin')
 <a href = "#">Ke Halaman Admin</a>
 @elseif($role == 'staff')
@@ -35,7 +35,7 @@
 @else
     <a href = "#">Ke halaman Whaetfer</a>
 @endif
-<br>
+<br> --}}
 @endsection
 
 <!-- @for ($i = 0; $i < 10; $i++)

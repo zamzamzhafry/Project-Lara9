@@ -15,7 +15,7 @@
             </div>
         @endif
 
-        <form action="students" method="post">
+        <form action="students" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="name">Name</label>
@@ -46,6 +46,12 @@
                     {{-- <option value="99">tesvalue</option> --}}
 
                 </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="photo">Photo</label>
+                <input type="file" class="form-control" name="photo" id="photo">
+
             </div>
 
 
